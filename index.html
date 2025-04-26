@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Student Records</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      width: 80%;
+      max-width: 1200px;
+      margin: 20px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    select {
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 300px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Student Records Viewer</h1>
+    <p style="text-align: center;">Select a grade to view student records:</p>
+
+    <!-- Dropdown to select Grade -->
+    <select id="gradeSelect">
+      <option value="All">All Grades</option>
+      <option value="Playgroup">Playgroup</option>
+      <option value="PP1">PP1</option>
+      <option value="PP2">PP2</option>
+      <option value="Grade 1">Grade 1</option>
+      <option value="Grade 2">Grade 2</option>
+      <option value="Grade 3">Grade 3</option>
+      <option value="Grade 4">Grade 4</option>
+      <option value="Grade 5">Grade 5</option>
+      <option value="Grade 6">Grade 6</option>
+      <option value="Grade 7">Grade 7</option>
+    </select>
+
+    <!-- iframe for Google Apps Script web app -->
+    <iframe id="studentRecordsIframe" src="https://script.google.com/macros/s/AKfycbzaYAlomkUQncqM-AUnxHL-whiVQx6znPfVAa3KhhhzKliv19-fklSyk7PHJ3lFvsfzQg/exec?grade=All" title="Student Records"></iframe>
+  </div>
+
+  <script>
+    const baseUrl = "https://script.google.com/macros/s/AKfycbzaYAlomkUQncqM-AUnxHL-whiVQx6znPfVAa3KhhhzKliv19-fklSyk7PHJ3lFvsfzQg/exec";
+    document.getElementById('gradeSelect').addEventListener('change', function () {
+      const grade = this.value;
+      const iframe = document.getElementById('studentRecordsIframe');
+      const url = baseUrl + "?grade=" + encodeURIComponent(grade);
+      iframe.src = url;
+    });
+  </script>
+</body>
+</html>
+
